@@ -1,9 +1,9 @@
 # ╔══════════════════════════════════╗
-# ║  🚀 Vultr 新加坡 · 专线        ║
-# ║  📍 SG  ·  07/31 09:10         ║
-# ║  ⏱ 在线: 1 day, 6 hours, 26 minutes   ║
-# ║  📊 今日: 4957MB · 本月: 4957MB ║
-# ║  💾 限额: 2TB · 已用: 0.2% · 剩余: 1996GB ║
+# ║  🚀 Vultr 东京 · 专线        ║
+# ║  📍 JP  ·  07/31 09:20         ║
+# ║  ⏱ 在线: 12 minutes   ║
+# ║  📊 今日: 16MB · 本月: 16MB ║
+# ║  💾 限额: 2TB · 已用: 0.0% · 剩余: 2000GB ║
 # ╚══════════════════════════════════╝
 
 # ───────── DNS 防泄漏 ─────────
@@ -28,9 +28,9 @@ dns:
 
 # ───────── 节点 ─────────
 proxies:
-  - name: "🇸🇬 新加坡 · Reality"
+  - name: "🇯🇵 东京 · Reality"
     type: vless
-    server: 149.28.151.159
+    server: 45.77.130.165
     port: 443
     uuid: 14c94463-6414-4184-a5ed-573b99d747fe
     network: tcp
@@ -39,14 +39,14 @@ proxies:
     client-fingerprint: chrome
     servername: addons.mozilla.org
     reality-opts:
-      public-key: MwK1CvlGK4LKUCAHpDH7uekQ1BlNlPwQi2gYAXMU8EY
+      public-key: 0G94eSD411YuKsPdbeqTehQSIZSbKcnvabSPQvWqniA
       short-id: c7b162e3
     packet-encoding: xudp
     udp: true
 
-  - name: "🇸🇬 新加坡 · 备用"
+  - name: "🇯🇵 东京 · 备用"
     type: ss
-    server: 149.28.151.159
+    server: 45.77.130.165
     port: 8388
     cipher: aes-256-gcm
     password: "wz123456"
@@ -56,8 +56,8 @@ proxy-groups:
   - name: "⚡ 自动选择"
     type: url-test
     proxies:
-      - 🇸🇬 新加坡 · Reality
-      - 🇸🇬 新加坡 · 备用
+      - 🇯🇵 东京 · Reality
+      - 🇯🇵 东京 · 备用
     url: "https://www.gstatic.com/generate_204"
     interval: 300
 
@@ -65,8 +65,8 @@ proxy-groups:
     type: select
     proxies:
       - ⚡ 自动选择
-      - 🇸🇬 新加坡 · Reality
-      - 🇸🇬 新加坡 · 备用
+      - 🇯🇵 东京 · Reality
+      - 🇯🇵 东京 · 备用
 
   - name: "🍎 Apple"
     type: select
