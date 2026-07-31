@@ -1,2 +1,2 @@
-vless://14c94463-6414-4184-a5ed-573b99d747fe@149.28.151.159:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=addons.mozilla.org&fp=chrome&pbk=MwK1CvlGK4LKUCAHpDH7uekQ1BlNlPwQi2gYAXMU8EY&sid=c7b162e3&type=tcp#SG-Reality
-ss://ImFlcy0yNTYtZ2NtOnd6MTIzNDU2Ig==@149.28.151.159:8388#SG-Shadowsocks
+vless://14c94463-6414-4184-a5ed-573b99d747fe@149.28.151.159:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=addons.mozilla.org&fp=chrome&pbk=MwK1CvlGK4LKUCAHpDH7uekQ1BlNlPwQi2gYAXMU8EY&sid=c7b162e3&type=tcp#🇸🇬-新加坡-Reality
+ss://YWVzLTI1Ni1nY206d3oxMjM0NTY=@149.28.151.159:8388#🇸🇬-新加坡-备用

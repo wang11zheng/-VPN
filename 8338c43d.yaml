@@ -1,9 +1,12 @@
-# Clash 订阅 - Vultr 新加坡
-# 自动生成时间: 2026-07-31 07:35:01
-# 本月流量: ~4 GB
+# ╔══════════════════════════════════╗
+# ║  🚀 Vultr 新加坡 · 专线        ║
+# ║  📍 SG  ·  07/31 07:39         ║
+# ║  ⏱ 在线: 1 day, 4 hours, 56 minutes   ║
+# ║  📊 今日: 4848MB · 本月: 4848MB ║
+# ╚══════════════════════════════════╝
 
 proxies:
-  - name: "SG-VLESS-Reality"
+  - name: "🇸🇬 新加坡 · Reality"
     type: vless
     server: 149.28.151.159
     port: 443
@@ -19,7 +22,7 @@ proxies:
     packet-encoding: xudp
     udp: true
 
-  - name: "SG-Shadowsocks"
+  - name: "🇸🇬 新加坡 · 备用"
     type: ss
     server: 149.28.151.159
     port: 8388
@@ -27,42 +30,42 @@ proxies:
     password: "wz123456"
 
 proxy-groups:
-  - name: "自动选择"
+  - name: "⚡ 自动选择"
     type: url-test
     proxies:
-      - SG-VLESS-Reality
-      - SG-Shadowsocks
+      - 🇸🇬 新加坡 · Reality
+      - 🇸🇬 新加坡 · 备用
     url: "https://www.gstatic.com/generate_204"
     interval: 300
 
-  - name: "代理"
+  - name: "🌐 代理"
     type: select
     proxies:
-      - 自动选择
-      - SG-VLESS-Reality
-      - SG-Shadowsocks
+      - ⚡ 自动选择
+      - 🇸🇬 新加坡 · Reality
+      - 🇸🇬 新加坡 · 备用
 
-  - name: "Apple"
+  - name: "🍎 Apple"
     type: select
     proxies:
-      - 自动选择
+      - ⚡ 自动选择
       - DIRECT
 
 rules:
-  # 局域网
+  # ───── 局域网 ─────
   - IP-CIDR,127.0.0.0/8,DIRECT
   - IP-CIDR,10.0.0.0/8,DIRECT
   - IP-CIDR,172.16.0.0/12,DIRECT
   - IP-CIDR,192.168.0.0/16,DIRECT
 
-  # Apple 服务
-  - DOMAIN-SUFFIX,apple.com,Apple
+  # ───── 🍎 Apple ─────
+  - DOMAIN-SUFFIX,apple.com,🍎 Apple
   - DOMAIN-SUFFIX,icloud.com,DIRECT
   - DOMAIN-SUFFIX,icloud-content.com,DIRECT
-  - DOMAIN-SUFFIX,appstore.com,代理
-  - DOMAIN,itunes.apple.com,代理
+  - DOMAIN-SUFFIX,appstore.com,🌐 代理
+  - DOMAIN,itunes.apple.com,🌐 代理
 
-  # 微软
+  # ───── 🪟 微软 ─────
   - DOMAIN-SUFFIX,microsoft.com,DIRECT
   - DOMAIN-SUFFIX,msn.com,DIRECT
   - DOMAIN-SUFFIX,live.com,DIRECT
@@ -72,91 +75,68 @@ rules:
   - DOMAIN-SUFFIX,sharepoint.com,DIRECT
   - DOMAIN-SUFFIX,windowsupdate.com,DIRECT
 
-  # 广告
+  # ───── 🚫 广告 ─────
   - DOMAIN-SUFFIX,doubleclick.net,REJECT
   - DOMAIN-SUFFIX,googlesyndication.com,REJECT
   - DOMAIN-SUFFIX,googleadservices.com,REJECT
-  - DOMAIN-SUFFIX,adservice.google.com,REJECT
   - DOMAIN-SUFFIX,appsflyer.com,REJECT
-  - DOMAIN-SUFFIX,adjust.com,REJECT
 
-  # 国内直连
+  # ───── 🇨🇳 国内直连 ─────
   - DOMAIN-SUFFIX,baidu.com,DIRECT
   - DOMAIN-SUFFIX,taobao.com,DIRECT
   - DOMAIN-SUFFIX,tmall.com,DIRECT
   - DOMAIN-SUFFIX,jd.com,DIRECT
   - DOMAIN-SUFFIX,qq.com,DIRECT
-  - DOMAIN-SUFFIX,weixin.qq.com,DIRECT
   - DOMAIN-SUFFIX,tencent.com,DIRECT
   - DOMAIN-SUFFIX,bilibili.com,DIRECT
-  - DOMAIN-SUFFIX,bilivideo.com,DIRECT
   - DOMAIN-SUFFIX,zhihu.com,DIRECT
   - DOMAIN-SUFFIX,weibo.com,DIRECT
   - DOMAIN-SUFFIX,douyin.com,DIRECT
-  - DOMAIN-SUFFIX,ixigua.com,DIRECT
   - DOMAIN-SUFFIX,alipay.com,DIRECT
   - DOMAIN-SUFFIX,163.com,DIRECT
-  - DOMAIN-SUFFIX,126.net,DIRECT
   - DOMAIN-SUFFIX,mi.com,DIRECT
   - DOMAIN-SUFFIX,meituan.com,DIRECT
-  - DOMAIN-SUFFIX,dianping.com,DIRECT
   - DOMAIN-SUFFIX,pinduoduo.com,DIRECT
-  - DOMAIN-SUFFIX,ctrip.com,DIRECT
   - DOMAIN-SUFFIX,csdn.net,DIRECT
-  - DOMAIN-SUFFIX,cnbeta.com,DIRECT
-  - DOMAIN-SUFFIX,iqiyi.com,DIRECT
-  - DOMAIN-SUFFIX,youku.com,DIRECT
   - DOMAIN-SUFFIX,sogou.com,DIRECT
-  - DOMAIN-SUFFIX,360.cn,DIRECT
-  - DOMAIN-SUFFIX,360.com,DIRECT
-  - DOMAIN-SUFFIX,cn,DIRECT
   - DOMAIN-SUFFIX,aliyun.com,DIRECT
-  - DOMAIN-SUFFIX,alicdn.com,DIRECT
-  - DOMAIN-SUFFIX,qcloud.com,DIRECT
-  - DOMAIN-SUFFIX,myqcloud.com,DIRECT
+  - DOMAIN-SUFFIX,vultr.com,DIRECT
 
-  # 代理
-  - DOMAIN-SUFFIX,google.com,代理
-  - DOMAIN-SUFFIX,googleapis.com,代理
-  - DOMAIN-SUFFIX,gstatic.com,代理
-  - DOMAIN-SUFFIX,youtube.com,代理
-  - DOMAIN-SUFFIX,ytimg.com,代理
-  - DOMAIN-SUFFIX,twitter.com,代理
-  - DOMAIN-SUFFIX,x.com,代理
-  - DOMAIN-SUFFIX,t.co,代理
-  - DOMAIN-SUFFIX,telegram.org,代理
-  - DOMAIN-SUFFIX,t.me,代理
-  - DOMAIN-SUFFIX,github.com,代理
-  - DOMAIN-SUFFIX,githubusercontent.com,代理
-  - DOMAIN-SUFFIX,githubassets.com,代理
-  - DOMAIN-SUFFIX,openai.com,代理
-  - DOMAIN-SUFFIX,chatgpt.com,代理
-  - DOMAIN-SUFFIX,anthropic.com,代理
-  - DOMAIN-SUFFIX,claude.ai,代理
-  - DOMAIN-SUFFIX,discord.com,代理
-  - DOMAIN-SUFFIX,reddit.com,代理
-  - DOMAIN-SUFFIX,redd.it,代理
-  - DOMAIN-SUFFIX,wikipedia.org,代理
-  - DOMAIN-SUFFIX,medium.com,代理
-  - DOMAIN-SUFFIX,cloudflare.com,代理
-  - DOMAIN-SUFFIX,archive.org,代理
-  - DOMAIN-SUFFIX,docker.com,代理
-  - DOMAIN-SUFFIX,npmjs.com,代理
-  - DOMAIN-SUFFIX,figma.com,代理
-  - DOMAIN-SUFFIX,notion.so,代理
-  - DOMAIN-SUFFIX,slack.com,代理
-  - DOMAIN-SUFFIX,zoom.us,代理
+  # ───── 🌍 代理 ─────
+  - DOMAIN-SUFFIX,google.com,🌐 代理
+  - DOMAIN-SUFFIX,googleapis.com,🌐 代理
+  - DOMAIN-SUFFIX,gstatic.com,🌐 代理
+  - DOMAIN-SUFFIX,youtube.com,🌐 代理
+  - DOMAIN-SUFFIX,ytimg.com,🌐 代理
+  - DOMAIN-SUFFIX,twitter.com,🌐 代理
+  - DOMAIN-SUFFIX,x.com,🌐 代理
+  - DOMAIN-SUFFIX,t.co,🌐 代理
+  - DOMAIN-SUFFIX,telegram.org,🌐 代理
+  - DOMAIN-SUFFIX,t.me,🌐 代理
+  - DOMAIN-SUFFIX,github.com,🌐 代理
+  - DOMAIN-SUFFIX,githubusercontent.com,🌐 代理
+  - DOMAIN-SUFFIX,openai.com,🌐 代理
+  - DOMAIN-SUFFIX,chatgpt.com,🌐 代理
+  - DOMAIN-SUFFIX,anthropic.com,🌐 代理
+  - DOMAIN-SUFFIX,claude.ai,🌐 代理
+  - DOMAIN-SUFFIX,discord.com,🌐 代理
+  - DOMAIN-SUFFIX,reddit.com,🌐 代理
+  - DOMAIN-SUFFIX,wikipedia.org,🌐 代理
+  - DOMAIN-SUFFIX,medium.com,🌐 代理
+  - DOMAIN-SUFFIX,notion.so,🌐 代理
+  - DOMAIN-SUFFIX,slack.com,🌐 代理
+  - DOMAIN-SUFFIX,zoom.us,🌐 代理
+  - DOMAIN-SUFFIX,figma.com,🌐 代理
+  - DOMAIN-SUFFIX,docker.com,🌐 代理
 
-  # Telegram IP 段
-  - IP-CIDR,91.108.4.0/22,代理
-  - IP-CIDR,91.108.8.0/22,代理
-  - IP-CIDR,91.108.12.0/22,代理
-  - IP-CIDR,91.108.16.0/22,代理
-  - IP-CIDR,91.108.56.0/22,代理
-  - IP-CIDR,149.154.160.0/20,代理
+  # ───── 📡 Telegram IP ─────
+  - IP-CIDR,91.108.4.0/22,🌐 代理
+  - IP-CIDR,91.108.8.0/22,🌐 代理
+  - IP-CIDR,91.108.12.0/22,🌐 代理
+  - IP-CIDR,91.108.16.0/22,🌐 代理
+  - IP-CIDR,91.108.56.0/22,🌐 代理
+  - IP-CIDR,149.154.160.0/20,🌐 代理
 
-  # GeoIP
+  # ───── 🏁 兜底 ─────
   - GEOIP,CN,DIRECT
-
-  # 其余走代理
-  - MATCH,代理
+  - MATCH,🌐 代理
