@@ -1,5 +1,5 @@
 # Clash 订阅 - Vultr 新加坡
-# 自动生成时间: 2026-07-31 03:08:48
+# 自动生成时间: 2026-07-31 03:17:07
 # 本月流量: ~4 GB
 
 proxies:
@@ -14,7 +14,7 @@ proxies:
     client-fingerprint: chrome
     servername: addons.mozilla.org
     reality-opts:
-      public-key: __PUBLIC_KEY_PLACEHOLDER__
+      public-key: MwK1CvlGK4LKUCAHpDH7uekQ1BlNlPwQi2gYAXMU8EY
       short-id: c7b162e3
     packet-encoding: xudp
     udp: true
