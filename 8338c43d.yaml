@@ -1,10 +1,31 @@
 # ╔══════════════════════════════════╗
 # ║  🚀 Vultr 新加坡 · 专线        ║
-# ║  📍 SG  ·  07/31 07:46         ║
-# ║  ⏱ 在线: 1 day, 5 hours, 2 minutes   ║
+# ║  📍 SG  ·  07/31 07:47         ║
+# ║  ⏱ 在线: 1 day, 5 hours, 3 minutes   ║
 # ║  📊 今日: 4852MB · 本月: 4852MB ║
 # ╚══════════════════════════════════╝
 
+# ───────── DNS 防泄漏 ─────────
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '+.lan'
+    - '+.local'
+    - 'ntp.*'
+  nameserver:
+    - https://doh.dns.sb/dns-query
+    - https://dns.alidns.com/dns-query
+  fallback:
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+
+# ───────── 节点 ─────────
 proxies:
   - name: "🇸🇬 新加坡 · Reality"
     type: vless
@@ -29,6 +50,7 @@ proxies:
     cipher: aes-256-gcm
     password: "wz123456"
 
+# ───────── 代理组 ─────────
 proxy-groups:
   - name: "⚡ 自动选择"
     type: url-test
@@ -51,6 +73,22 @@ proxy-groups:
       - ⚡ 自动选择
       - DIRECT
 
+# ───────── 远程规则（自动更新广告过滤）─────────
+rule-providers:
+  reject:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
+    path: ./ruleset/reject.yaml
+    interval: 86400
+  icloud:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt"
+    path: ./ruleset/icloud.yaml
+    interval: 86400
+
+# ───────── 分流规则 ─────────
 rules:
   # ───── 局域网 ─────
   - IP-CIDR,127.0.0.0/8,DIRECT
@@ -58,33 +96,27 @@ rules:
   - IP-CIDR,172.16.0.0/12,DIRECT
   - IP-CIDR,192.168.0.0/16,DIRECT
 
+  # ───── 远程广告规则 ─────
+  - RULE-SET,reject,REJECT
+  - RULE-SET,icloud,DIRECT
+
   # ───── 🍎 Apple ─────
   - DOMAIN-SUFFIX,apple.com,🍎 Apple
   - DOMAIN-SUFFIX,icloud.com,DIRECT
-  - DOMAIN-SUFFIX,icloud-content.com,DIRECT
   - DOMAIN-SUFFIX,appstore.com,🌐 代理
   - DOMAIN,itunes.apple.com,🌐 代理
 
-  # ───── 🪟 微软 ─────
+  # ───── 🪟 微软 直连 ─────
   - DOMAIN-SUFFIX,microsoft.com,DIRECT
-  - DOMAIN-SUFFIX,msn.com,DIRECT
   - DOMAIN-SUFFIX,live.com,DIRECT
   - DOMAIN-SUFFIX,office.com,DIRECT
   - DOMAIN-SUFFIX,office365.com,DIRECT
   - DOMAIN-SUFFIX,onedrive.com,DIRECT
-  - DOMAIN-SUFFIX,sharepoint.com,DIRECT
   - DOMAIN-SUFFIX,windowsupdate.com,DIRECT
-
-  # ───── 🚫 广告 ─────
-  - DOMAIN-SUFFIX,doubleclick.net,REJECT
-  - DOMAIN-SUFFIX,googlesyndication.com,REJECT
-  - DOMAIN-SUFFIX,googleadservices.com,REJECT
-  - DOMAIN-SUFFIX,appsflyer.com,REJECT
 
   # ───── 🇨🇳 国内直连 ─────
   - DOMAIN-SUFFIX,baidu.com,DIRECT
   - DOMAIN-SUFFIX,taobao.com,DIRECT
-  - DOMAIN-SUFFIX,tmall.com,DIRECT
   - DOMAIN-SUFFIX,jd.com,DIRECT
   - DOMAIN-SUFFIX,qq.com,DIRECT
   - DOMAIN-SUFFIX,tencent.com,DIRECT
@@ -97,24 +129,17 @@ rules:
   - DOMAIN-SUFFIX,mi.com,DIRECT
   - DOMAIN-SUFFIX,meituan.com,DIRECT
   - DOMAIN-SUFFIX,pinduoduo.com,DIRECT
-  - DOMAIN-SUFFIX,csdn.net,DIRECT
-  - DOMAIN-SUFFIX,sogou.com,DIRECT
   - DOMAIN-SUFFIX,aliyun.com,DIRECT
   - DOMAIN-SUFFIX,vultr.com,DIRECT
 
   # ───── 🌍 代理 ─────
   - DOMAIN-SUFFIX,google.com,🌐 代理
   - DOMAIN-SUFFIX,googleapis.com,🌐 代理
-  - DOMAIN-SUFFIX,gstatic.com,🌐 代理
   - DOMAIN-SUFFIX,youtube.com,🌐 代理
-  - DOMAIN-SUFFIX,ytimg.com,🌐 代理
   - DOMAIN-SUFFIX,twitter.com,🌐 代理
   - DOMAIN-SUFFIX,x.com,🌐 代理
-  - DOMAIN-SUFFIX,t.co,🌐 代理
   - DOMAIN-SUFFIX,telegram.org,🌐 代理
-  - DOMAIN-SUFFIX,t.me,🌐 代理
   - DOMAIN-SUFFIX,github.com,🌐 代理
-  - DOMAIN-SUFFIX,githubusercontent.com,🌐 代理
   - DOMAIN-SUFFIX,openai.com,🌐 代理
   - DOMAIN-SUFFIX,chatgpt.com,🌐 代理
   - DOMAIN-SUFFIX,anthropic.com,🌐 代理
@@ -122,7 +147,6 @@ rules:
   - DOMAIN-SUFFIX,discord.com,🌐 代理
   - DOMAIN-SUFFIX,reddit.com,🌐 代理
   - DOMAIN-SUFFIX,wikipedia.org,🌐 代理
-  - DOMAIN-SUFFIX,medium.com,🌐 代理
   - DOMAIN-SUFFIX,notion.so,🌐 代理
   - DOMAIN-SUFFIX,slack.com,🌐 代理
   - DOMAIN-SUFFIX,zoom.us,🌐 代理
@@ -132,9 +156,6 @@ rules:
   # ───── 📡 Telegram IP ─────
   - IP-CIDR,91.108.4.0/22,🌐 代理
   - IP-CIDR,91.108.8.0/22,🌐 代理
-  - IP-CIDR,91.108.12.0/22,🌐 代理
-  - IP-CIDR,91.108.16.0/22,🌐 代理
-  - IP-CIDR,91.108.56.0/22,🌐 代理
   - IP-CIDR,149.154.160.0/20,🌐 代理
 
   # ───── 🏁 兜底 ─────
